@@ -97,7 +97,10 @@ export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
         ctx.restore();
 
         ctx.save();
+
+        // 이동 행렬을 0, 0 초기화하고 그래픽을 마스킹합니다.
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+
         ctx.globalCompositeOperation = "source-in";
 
         ctx.fillStyle = "#4798E6";
