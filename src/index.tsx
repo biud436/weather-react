@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/index.css";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
-import { Timer } from "./store";
-import { observer } from "mobx-react-lite";
 import { HelmetProvider } from "react-helmet-async";
 
 if (

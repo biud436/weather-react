@@ -1,8 +1,9 @@
 import React from "react";
+import { observer } from "mobx-react-lite";
 
-type CotnainerProps = { children: React.ReactNode[] };
+export type CotnainerProps = { children: React.ReactNode[] };
 
-export function ContainerWrapper({ children }: CotnainerProps) {
+export const ContainerWrapper = observer(({ children }: CotnainerProps) => {
     return (
         <div className="container">
             {children.map((child) => {
@@ -10,4 +11,4 @@ export function ContainerWrapper({ children }: CotnainerProps) {
             })}
         </div>
     );
-}
+});

@@ -1,4 +1,6 @@
-export function TemperatureField() {
+import { observer } from "mobx-react-lite";
+
+export const TemperatureField = observer(() => {
     return (
         <footer className="temperature-field">
             <canvas id="main-canvas">
@@ -6,4 +8,4 @@ export function TemperatureField() {
             </canvas>
         </footer>
     );
-}
+});

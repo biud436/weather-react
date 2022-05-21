@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-export class Timer {
+class TimerStore {
     secondsPassed = 0;
 
     constructor() {
@@ -11,3 +11,5 @@ export class Timer {
         this.secondsPassed += 1;
     }
 }
+
+export const timerStore = new TimerStore();

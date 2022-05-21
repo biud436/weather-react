@@ -138,7 +138,7 @@ article span {
     padding: 0;
 }
 
-#loading {
+.loading {
     position: fixed;
     left: 50%;
     right: 0;
@@ -150,7 +150,7 @@ article span {
     margin: 0;
     display: none;
 }
-#darken {
+.darken {
     position: fixed;
     left: 0;
     right: 0;
