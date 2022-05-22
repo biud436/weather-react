@@ -218,3 +218,55 @@ article span {
         font-size: 0.5rem;
     }
 }
+
+@media screen and (min-width: 320px) {
+    section {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    html {
+        font-size: 0.5rem;
+    }
+}
+@media screen and (min-width: 480px) {
+    section {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 1024px) {
+    section {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+}
+
+@media screen and (min-height: 320px) {
+    html {
+        font-size: 0.5rem;
+    }
+}
+
+@media screen and (min-height: 480px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-height: 900px) {
+    html {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-height: 1280px) {
+    html {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (min-height: 1600px) {
+    html {
+        font-size: 3rem;
+    }
+}

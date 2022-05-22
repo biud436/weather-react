@@ -275,8 +275,12 @@ export class WeatherStore {
                     lat: -74.69453035090875,
                     lon: 164.10430690326442,
                 },
+                ilulissat: {
+                    lat: 69.22481727432647,
+                    lon: -51.09234800679942,
+                },
             };
-            const target: keyof typeof location = "seoul";
+            const target: keyof typeof location = "ilulissat";
             const lat = location[target].lat;
             const lon = location[target].lon;
             const API = window.atob(
