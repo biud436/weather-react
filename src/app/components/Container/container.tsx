@@ -7,7 +7,7 @@ export const ContainerWrapper = observer(({ children }: CotnainerProps) => {
     return (
         <div className="container">
             {children.map((child) => {
-                return <>{child}</>;
+                return child;
             })}
         </div>
     );

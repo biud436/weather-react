@@ -2,12 +2,14 @@ import { observer } from "mobx-react-lite";
 import { createRef, useEffect, useRef, useState } from "react";
 
 export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
-    const [size, setSize] = useState(10);
+    const [size] = useState(10);
     const [canvasUrl, setCanvasUrl] = useState("");
     const [renderOK, setRenderOK] = useState(false);
-    const [canvasWidth, setCanvasWidth] = useState(50);
-    const [canvasHeight, setCanvasHeight] = useState(25);
-    const [renderFillRate, setRenderFillRate] = useState(fillRate * 0.01);
+    const [canvasWidth] = useState(50);
+    const [canvasHeight] = useState(25);
+    const [renderFillRate] = useState(fillRate * 0.01);
+
+    // ref는 useState와 다르게 값이 바뀌어도 다시 렌더링이 되지 않음.
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
 
