@@ -1,6 +1,6 @@
 FROM node:alpine
 
-ENV PORT 8080
+ENV PORT 3000
 
 WORKDIR /usr/src/app
 
@@ -13,4 +13,4 @@ ENV NODE_ENV production
 
 RUN npm run build
 
-CMD ["npm", "run", "start", "--", "--port", "8080"]
+CMD ["npm", "run", "start"]
