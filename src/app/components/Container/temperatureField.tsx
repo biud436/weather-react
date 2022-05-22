@@ -64,7 +64,9 @@ export const TemperatureField = observer(() => {
         const maxTemperature = config.maxTemperature;
         const canvasHeight = canvas.height;
         const thothreshold = Math.floor(canvasHeight / maxTemperature);
-        const y = Math.floor(thothreshold * (maxTemperature - temperature));
+        const y = Math.floor(
+            thothreshold * (maxTemperature - Math.abs(temperature))
+        );
 
         return y;
     };
@@ -137,7 +139,8 @@ export const TemperatureField = observer(() => {
         });
 
         // 요일 별 기온을 백분율에 따라 라인화합니다.
-        const lines = getLines(temperatures.slice(0, 5));
+        const originTemperatures = temperatures.slice(0, 5);
+        const lines = getLines(originTemperatures);
 
         ctx.save();
         ctx.beginPath();

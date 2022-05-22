@@ -264,8 +264,21 @@ export class WeatherStore {
     *fetch() {
         this.state = "pending";
         try {
-            const lat = 37.5326;
-            const lon = 127.024612;
+            const location = {
+                // 대한민국 서울
+                seoul: {
+                    lat: 37.5326,
+                    lon: 126.024612,
+                },
+                // 남극 (영하 20도)
+                zucchelli: {
+                    lat: -74.69453035090875,
+                    lon: 164.10430690326442,
+                },
+            };
+            const target: keyof typeof location = "seoul";
+            const lat = location[target].lat;
+            const lon = location[target].lon;
             const API = window.atob(
                 process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
             );
