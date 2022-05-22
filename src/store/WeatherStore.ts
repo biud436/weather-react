@@ -280,7 +280,7 @@ export class WeatherStore {
                     lon: -51.09234800679942,
                 },
             };
-            const target: keyof typeof location = "ilulissat";
+            const target: keyof typeof location = "seoul";
             const lat = location[target].lat;
             const lon = location[target].lon;
             const API = window.atob(
