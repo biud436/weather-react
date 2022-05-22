@@ -1,10 +1,11 @@
-FROM node:alpine AS builder
+FROM node:17.0.0 as builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
-COPY ./ ./
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn install
+COPY . .
 ENV NODE_ENV production
-CMD ["npm", "run", "build"]
+RUN yarn build
 
 FROM nginx:stable-alpine 
 COPY --from=builder /app/build /usr/share/nginx/html
