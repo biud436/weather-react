@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/devops/
+sudo docker-compose up --build -d
