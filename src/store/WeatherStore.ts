@@ -292,7 +292,7 @@ export class WeatherStore {
             const response: Response = yield fetch(url);
             const data: WeatherResponse = yield response.json();
 
-            const { daily, current } = data;
+            const { daily } = data;
 
             for (let i = 0; i < 5; i++) {
                 this.temperatures.push(

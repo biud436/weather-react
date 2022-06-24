@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useLayoutEffect } from "react";
-import { AppStore, appStore } from "../../../store/AppStore";
+import React, { useLayoutEffect } from "react";
+import { AppStore } from "../../../store/AppStore";
 import { WindCardData } from "../../../store/WeatherStore";
 import { WaterDrop } from "./components/WaterDrop";
 
@@ -15,7 +15,10 @@ export function useCards(
             return (
                 <article key={index}>
                     <p>{weatherStore.days[index]}</p>
-                    <img src={weatherStore.weatherImage[index]}></img>
+                    <img
+                        src={weatherStore.weatherImage[index]}
+                        alt="weatherImage"
+                    ></img>
                     <p className="article__weather-wind-deg">
                         <span>풍향 </span>
                         {card.windDeg}
@@ -63,9 +66,9 @@ export function useCards(
 export const WeatherRenderer = observer(({ store }: { store: AppStore }) => {
     useLayoutEffect(() => {
         store.fetchWeatherData();
-    }, []);
+    }, [store]);
 
-    const [cardData, getCards] = useCards(store);
+    const [, getCards] = useCards(store);
 
     return <section className="weather-renderer">{getCards()}</section>;
 });
