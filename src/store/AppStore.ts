@@ -47,6 +47,11 @@ export class AppStore {
         this.chartStore.isReady = true;
     }
 
+    /**
+     * Get the temperatures from the weather data.
+     *
+     * @returns
+     */
     getTemperatures(): number[] {
         return this.weatherStore.temperatures;
     }

@@ -8,4 +8,6 @@
 
 > [weather.biud436.com](https://weather.biud436.com/)
 
-위 사이트는 테스트 용도이며 추후 CloudFlare Pages로 이전될 수도 있습니다.
+# Deploy
+
+AWS Codedeploy를 이용한 자동 배포를 진행하고 있으며 main에 커밋 시 사이트가 자동으로 업데이트 됩니다.

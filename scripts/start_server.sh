@@ -1,3 +1,4 @@
 #!/bin/sh
-cd ~/devops/
-date > time.log
+cd /home/ubuntu/devops
+# date > time.log
+sudo docker-compose up --build -d

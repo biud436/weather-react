@@ -10,7 +10,7 @@ export const CityField = observer(() => {
                     ? "로딩중"
                     : appStore.weatherStore.timezone}
                 <a href="https://github.com/biud436/">
-                    <img src={GithubMark}></img>
+                    <img src={GithubMark} alt="Github Mark"></img>
                 </a>
             </div>
         </header>

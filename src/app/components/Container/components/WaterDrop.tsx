@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { createRef, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
     const [size] = useState(10);
@@ -13,7 +13,7 @@ export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
 
-    const drawShape = () => {
+    const drawShape = useCallback(() => {
         const canvas = canvasRef.current;
 
         if (!canvas) {
@@ -46,77 +46,80 @@ export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
         ctx.stroke();
 
         ctx.restore();
-    };
+    }, [canvasHeight, canvasWidth, size]);
 
-    const drawBackground = (fill: boolean, rate: number) => {
-        const canvas = canvasRef.current;
+    const drawBackground = useCallback(
+        (fill: boolean, rate: number) => {
+            const canvas = canvasRef.current;
 
-        if (!canvas) {
-            return;
-        }
+            if (!canvas) {
+                return;
+            }
 
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-            return;
-        }
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+                return;
+            }
 
-        const w = size;
+            const w = size;
 
-        ctx.save();
+            ctx.save();
 
-        ctx.globalCompositeOperation = "destination-in";
+            ctx.globalCompositeOperation = "destination-in";
 
-        ctx.fillStyle = "blue";
+            ctx.fillStyle = "blue";
 
-        ctx.fillRect(
-            0,
-            Math.floor(canvasHeight * rate),
-            canvasWidth,
-            canvasHeight
-        );
-        ctx.fill();
+            ctx.fillRect(
+                0,
+                Math.floor(canvasHeight * rate),
+                canvasWidth,
+                canvasHeight
+            );
+            ctx.fill();
 
-        ctx.restore();
+            ctx.restore();
 
-        ctx.globalCompositeOperation = "source-over";
+            ctx.globalCompositeOperation = "source-over";
 
-        ctx.save();
+            ctx.save();
 
-        // 캔버스의 중심점을 중앙으로 옮깁니다.
-        ctx.setTransform(1, 0, 0, 1, canvasWidth / 2, canvasHeight / 2);
+            // 캔버스의 중심점을 중앙으로 옮깁니다.
+            ctx.setTransform(1, 0, 0, 1, canvasWidth / 2, canvasHeight / 2);
 
-        ctx.translate(0.5, 0.5);
-        ctx.beginPath();
-        ctx.moveTo(0 - w, 0);
-        ctx.lineTo(0, 0 - (w - 2));
-        ctx.lineTo(0 + w, 0);
-        ctx.arc(0, 0, w, 0, Math.PI);
-        ctx.lineWidth = 10;
-        ctx.closePath();
-        ctx.fillStyle = "#4798E6";
-        ctx.fill();
+            ctx.translate(0.5, 0.5);
+            ctx.beginPath();
+            ctx.moveTo(0 - w, 0);
+            ctx.lineTo(0, 0 - (w - 2));
+            ctx.lineTo(0 + w, 0);
+            ctx.arc(0, 0, w, 0, Math.PI);
+            ctx.lineWidth = 10;
+            ctx.closePath();
+            ctx.fillStyle = "#4798E6";
+            ctx.fill();
 
-        ctx.restore();
+            ctx.restore();
 
-        ctx.save();
+            ctx.save();
 
-        // 이동 행렬을 0, 0 초기화하고 그래픽을 마스킹합니다.
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
+            // 이동 행렬을 0, 0 초기화하고 그래픽을 마스킹합니다.
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-        ctx.globalCompositeOperation = "source-in";
+            ctx.globalCompositeOperation = "source-in";
 
-        ctx.fillStyle = "#4798E6";
+            ctx.fillStyle = "#4798E6";
 
-        ctx.fillRect(
-            0,
-            Math.floor(canvasHeight * rate),
-            canvasWidth,
-            canvasHeight
-        );
-        ctx.fill();
+            ctx.fillRect(
+                0,
+                Math.floor(canvasHeight * rate),
+                canvasWidth,
+                canvasHeight
+            );
+            ctx.fill();
 
-        ctx.restore();
-    };
+            ctx.restore();
+        },
+        [canvasHeight, canvasWidth, size]
+    );
 
     useEffect(() => {
         const rate = renderFillRate;
@@ -132,7 +135,7 @@ export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
         setCanvasUrl(canvas.toDataURL());
 
         setRenderOK(true);
-    }, [canvasRef]);
+    }, [canvasRef, drawBackground, drawShape, renderFillRate]);
 
     return (
         <>
@@ -144,6 +147,7 @@ export const WaterDrop = observer(({ fillRate }: { fillRate: number }) => {
                     title={`습도 ${fillRate}%`}
                     width={50}
                     height={50}
+                    alt={`습도 ${fillRate}%`}
                 ></img>
             ) : (
                 <canvas
