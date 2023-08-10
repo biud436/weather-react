@@ -16,8 +16,7 @@
         "jsx": "react-jsx",
         "useDefineForClassFields": true,
         "strictNullChecks": true,
-        "noImplicitAny": true,
-        "suppressImplicitAnyIndexErrors": true,
+        "noImplicitAny": false,
         "rootDir": "src"
     },
     "include": ["src"]
